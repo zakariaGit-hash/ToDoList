@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background font-sans antialiased text-gray-800;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-gray-900;
+  }
+  
+  button {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50;
+  }
+  
+  input, select, textarea {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50;
+  }
+}
+
+@layer components {
+  select {
+    @apply appearance-none bg-no-repeat bg-right pr-8 cursor-pointer transition-colors duration-200;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-size: 1.25rem;
+  }
+  
+  select:hover {
+    @apply bg-gray-50;
+  }
+  
+  select:focus {
+    @apply border-primary bg-white;
+  }
+  
+  .dropdown-container {
+    @apply relative;
+  }
+  
+  .dropdown-menu {
+    @apply absolute z-10 mt-1 w-full bg-white rounded-xl shadow-card border border-gray-200 overflow-hidden transition-all duration-300 transform origin-top scale-95 opacity-0 invisible;
+  }
+  
+  .dropdown-container:focus-within .dropdown-menu {
+    @apply scale-100 opacity-100 visible;
+  }
+  
+  select:focus-visible {
+    @apply outline-none;
+  }
+  
+  .dropdown-item {
+    @apply px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors duration-150;
+  }
+}
