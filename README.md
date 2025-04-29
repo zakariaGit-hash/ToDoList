@@ -16,7 +16,7 @@ Cette application Todo List est composée de deux parties :
 ```
 todo-list/
 ├── frontend/         # Application React
-└── backend/          # Serveur Express + MySQL
+├── backend/          # Serveur Express + MySQL
 └── docker-compose.yml
 
 ```
