@@ -61,11 +61,6 @@ pipeline {
             }
         }
         
-        stage('Clean Up') {
-            steps {
-                sh 'docker-compose down --volumes'
-            }
-        }
     }
     
     post {
