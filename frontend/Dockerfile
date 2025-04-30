@@ -1,39 +1,35 @@
-# Étape de build
 FROM node:18-alpine as build
 
 WORKDIR /app
 
+# Copy package files first for better caching
 COPY package*.json ./
 
-# Ajout des variables d'environnement
-ENV npm_config_platform=linux
-ENV npm_config_arch=x64
-
-# Installation des dépendances et des outils nécessaires
+# Install dependencies
 RUN npm install --include-dev
+
+# Install esbuild
 RUN npm install esbuild
 
-# Ajout des permissions d'exécution aux binaires dans node_modules/.bin/
+# Fix permissions explicitly - Be thorough with permissions
 RUN chmod -R +x ./node_modules/.bin/
+RUN find ./node_modules -type f -name "vite" -exec chmod +x {} \;
 
-# Copie du reste des fichiers du projet
+# Copy project files
 COPY . .
 
-# Définition des variables d'environnement pour VITE et NODE_ENV
-ENV VITE_API_URL=/api
-ENV NODE_ENV=production
+# Explicitly call the binary with full path
+RUN ./node_modules/.bin/vite build
 
-# Construction du projet
-RUN npm run build
-
-# Étape de production
+# Production stage
 FROM nginx:alpine
 
-# Copie des fichiers générés par le build dans l'image Nginx
+# Copy built assets from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Exposer le port 80
+# Copy nginx config
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
 
-# Démarrer Nginx
 CMD ["nginx", "-g", "daemon off;"]
