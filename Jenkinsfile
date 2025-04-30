@@ -5,6 +5,11 @@ pipeline {
         DOCKER_COMPOSE_PATH = "${WORKSPACE}/docker-compose.yml"
     }
     
+    triggers {
+        // Déclenchement automatique quand un push est fait sur GitHub
+        githubPush()
+    }
+    
     stages {
         stage('Checkout') {
             steps {
@@ -60,7 +65,6 @@ pipeline {
                 }
             }
         }
-        
     }
     
     post {
