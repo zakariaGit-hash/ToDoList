@@ -74,7 +74,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-background py-8">
       <div className="max-w-4xl mx-auto px-4">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">Todo List</h1>
-        <p className="text-center text-gray-600 mb-8">MADE BY BADAOUINI Zakaria et JR dd</p>
+        <p className="text-center text-gray-600 mb-8">MADE BY BADAOUINI Zakaria et JR jounir</p>
         
         <div className="bg-surface p-6 rounded-2xl shadow-card mb-8 animate-slide-up">
           <form onSubmit={addTodo} className="space-y-4">
