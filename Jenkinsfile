@@ -28,7 +28,7 @@ pipeline {
         
         stage('Build & Start Services') {
             steps {
-                sh 'docker-compose down --volumes || true'
+                sh 'docker-compose down  || true'
                 sh 'docker-compose build'
                 
                 // Add debugging to see what's happening inside containers
